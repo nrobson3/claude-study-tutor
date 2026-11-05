@@ -27,8 +27,21 @@ While a session runs, its lesson note (`courses/<course>/sessions/`) fills in
 beside the chat in Obsidian, with the math, diagrams and quiz results rendered.
 
 In Obsidian:
-- **Graph view** is the knowledge graph: concepts only, green = solid,
-  amber = shaky, grey = not yet. Arrows point to what a concept rests on.
+- **Study Graph** (the network icon in the left ribbon, or "Open study graph")
+  is a custom view of the knowledge graph:
+  - colour by status (green solid, amber shaky, grey not yet), by course, or by
+    topic clusters found automatically;
+  - click a concept to see its statement, what it rests on and what rests on
+    it, and light up its whole dependency chain;
+  - jump from a node to its note, its slide page, or a ready-made "study"
+    prompt;
+  - an Insight panel lists what is ready to learn next, shaky and missing
+    foundations, gaps between topics, hubs, bridges between courses and
+    unlinked ideas.
+
+  `python scripts/study_graph.py html --open` shows the same view in a browser.
+- **Graph view** is Obsidian's built-in graph, set to concepts only and
+  coloured by status.
 - **`courses/<course>/map.md`** lists every concept by status, plus the slide
   decks not studied yet.
 - **`courses/<course>/mistakes.md`** lists every miss and whether it has been
@@ -52,12 +65,15 @@ pattern):
 | `scripts/graph.py` | Builds each course map and lints the graph (broken links, cycles, orphans) |
 | `scripts/sync.py` | Pull and push with GitHub, keeping files over 50 MB out of git |
 | `scripts/setup_hooks.py` | Writes `.claude/settings.json` for your computer |
+| `tools/study-graph/` | The Study Graph: `core.js` (layout, clustering and insights), `plugin.js` (Obsidian glue), styles |
+| `scripts/study_graph.py` | Builds the plugin into `.obsidian/plugins/study-graph/`, exports the graph as JSON, writes the standalone page |
 | `templates/` | Session and concept note templates |
-| `tests/` | unittest suite for the scripts |
+| `tests/` | unittest suite for the scripts; `tests/js/` for the Study Graph (Node's test runner) |
 
 ## Set it up
 
 You need Claude Code, Obsidian, and Python 3.11 or newer with `pymupdf`.
+Node.js is only needed to run the Study Graph's tests.
 
 1. Clone this repo and make **your own copy private** before adding any course
    material. Slides and past tests belong to their authors.
@@ -68,12 +84,15 @@ You need Claude Code, Obsidian, and Python 3.11 or newer with `pymupdf`.
    Python and this folder.
 4. Put lecture PDFs in `courses/<course>/slides/` and run
    `python scripts/slides.py index`.
-5. Open the folder as a vault in Obsidian, and run Claude Code in it.
+5. Open the folder as a vault in Obsidian and turn off Restricted mode (Settings
+   > Community plugins) so the Study Graph plugin loads. Then run Claude Code
+   in it.
 
 Run the tests from the repo root:
 
 ```
 python -X utf8 -m unittest discover -s tests
+node --test "tests/js/*.test.js"
 ```
 
 ## Credits

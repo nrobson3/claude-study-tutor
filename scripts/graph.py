@@ -45,6 +45,8 @@ class Concept:
     statement: str = ""
     follows_from: list[str] = field(default_factory=list)
     links: list[str] = field(default_factory=list)
+    kind: str = ""
+    slide: str = ""  # first link on the **Slides:** line, e.g. "courses/c/slides/L1.pdf#page=3"
 
     @property
     def statuses(self) -> list[str]:
@@ -120,6 +122,8 @@ def link_targets(text: str) -> list[str]:
 
 def load_concepts(course_filter: str | None = None) -> list[Concept]:
     concepts = []
+    if not COURSES.is_dir():
+        return concepts
     for course in sorted(p for p in COURSES.iterdir() if p.is_dir()):
         if course_filter and course.name != course_filter:
             continue
@@ -136,12 +140,17 @@ def load_concepts(course_filter: str | None = None) -> list[Concept]:
             c.aliases = list(aliases) if isinstance(aliases, list) else []
             dc = fm.get("course")
             c.declared_course = dc if isinstance(dc, str) and dc else None
+            kind = fm.get("kind")
+            c.kind = kind if isinstance(kind, str) else ""
             for line in body.splitlines():
                 stripped = line.strip()
                 if stripped.lower().startswith("**statement:**"):
                     c.statement = stripped.split(":**", 1)[1].strip()
                 elif stripped.lower().startswith("**follows from:**"):
                     c.follows_from = link_targets(stripped)
+                elif stripped.lower().startswith("**slides:**") and not c.slide:
+                    m = re.search(r"\[\[([^\]|\\]+)", stripped)
+                    c.slide = m.group(1).strip() if m else ""
             c.links = link_targets(body)
             concepts.append(c)
     return concepts

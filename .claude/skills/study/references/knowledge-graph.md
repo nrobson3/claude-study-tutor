@@ -1,6 +1,12 @@
 # The knowledge graph
 
-Concept notes are the graph's nodes. A note's **Follows from** links are its edges. Obsidian's graph view draws them, filtered to `tag:#concept` and coloured by status:
+Concept notes are the graph's nodes. A note's **Follows from** links are its edges.
+
+Two views draw the graph:
+- **The Study Graph plugin** (`tools/study-graph/`, built into `.obsidian/plugins/study-graph/`). Its Insight panel turns structure into advice: ready to learn, shaky and missing foundations, gaps between topic clusters. It reads exactly the fields below (frontmatter `tags`, `**Statement:**`, `**Follows from:**`, the first link on `**Slides:**`), so keep the format exact.
+- **Obsidian's built-in graph**, filtered to `tag:#concept`.
+
+Both colour by status:
 
 - **solid:** green;
 - **shaky:** amber;

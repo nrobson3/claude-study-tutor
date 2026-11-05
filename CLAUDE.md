@@ -17,7 +17,11 @@ scripts/
   lesson_log.py            mirrors a study session into its lesson note
   graph.py                 course maps + graph lint
   sync.py                  pull / push with GitHub
-tests/                     unittest suite for scripts/ (python -X utf8 -m unittest discover -s tests)
+  study_graph.py           build / check-build the Study Graph plugin, export graph JSON, standalone html
+tools/study-graph/         Study Graph sources: core.js (engine), plugin.js (Obsidian glue), styles.css
+.obsidian/plugins/study-graph/   built plugin (generated: edit tools/study-graph/, then `python scripts/study_graph.py build`)
+tests/                     python -X utf8 -m unittest discover -s tests   (scripts)
+                           node --test "tests/js/*.test.js"               (Study Graph engine + plugin)
 templates/                 session.md and concept.md
 viz/                       diagrams Claude drew and checked (embedded in notes)
 courses/<course>/

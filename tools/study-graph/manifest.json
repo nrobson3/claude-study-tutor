@@ -1,0 +1,9 @@
+{
+  "id": "study-graph",
+  "name": "Study Graph",
+  "version": "0.1.0",
+  "minAppVersion": "1.4.0",
+  "description": "Knowledge graph of the vault's concept notes: coloured by status, course or topic cluster, with study insights.",
+  "author": "Navy Robson",
+  "isDesktopOnly": true
+}
