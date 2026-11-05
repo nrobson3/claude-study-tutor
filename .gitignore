@@ -1,0 +1,35 @@
+# Rendered page images and other scratch output
+.cache/
+
+# Claude Code local state (lesson-log links, error log)
+.claude/state/
+.claude/settings.local.json
+
+# Obsidian per-device state (the shared config in .obsidian/ is committed)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.trash/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Phone photos: convert to JPG first (Obsidian can't show HEIC)
+*.heic
+*.HEIC
+
+# Half-written files from the scripts
+*.tmp
+
+# Material whose notice forbids copying stays on this computer: list it here, e.g.
+# /courses/<course>/slides/<file>.pdf
+
+# Hook settings are machine-specific: scripts/setup_hooks.py writes them
+.claude/settings.json

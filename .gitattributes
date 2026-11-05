@@ -1,0 +1,6 @@
+# Keep text files LF everywhere (Obsidian and the scripts expect it), whatever core.autocrlf says.
+* text=auto eol=lf
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary

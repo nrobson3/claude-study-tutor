@@ -1,0 +1,44 @@
+{
+  "collapse-filter": false,
+  "search": "tag:#concept",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "tag:#status/solid",
+      "color": {
+        "a": 1,
+        "rgb": 4170843
+      }
+    },
+    {
+      "query": "tag:#status/shaky",
+      "color": {
+        "a": 1,
+        "rgb": 15246141
+      }
+    },
+    {
+      "query": "tag:#status/not-yet",
+      "color": {
+        "a": 1,
+        "rgb": 10133670
+      }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": true,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1.2,
+  "lineSizeMultiplier": 1,
+  "collapse-forces": true,
+  "centerStrength": 0.5,
+  "repelStrength": 12,
+  "linkStrength": 1,
+  "linkDistance": 200,
+  "scale": 0.6599430498367291,
+  "close": false
+}

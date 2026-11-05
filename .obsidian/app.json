@@ -1,0 +1,13 @@
+{
+  "alwaysUpdateLinks": true,
+  "newLinkFormat": "shortest",
+  "useMarkdownLinks": false,
+  "attachmentFolderPath": "viz",
+  "defaultViewMode": "preview",
+  "readableLineLength": true,
+  "promptDelete": true,
+  "showUnsupportedFiles": false,
+  "userIgnoreFilters": [
+    "templates/"
+  ]
+}
